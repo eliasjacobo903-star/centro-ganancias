@@ -3,77 +3,136 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Centro - Inicio</title>
+  <meta name="theme-color" content="#071521">
+  <title>Centro Ganancias</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="app">
+  <div id="app">
     <header class="topbar">
-      <div class="mini-logo">▥<span>Centro</span></div>
-      <h1>Hogar</h1>
-      <button class="flag" aria-label="Idioma">🇩🇴</button>
+      <div>
+        <div class="brand">CENTRO <span>GANANCIAS</span></div>
+        <small id="welcome">Tu centro de recompensas</small>
+      </div>
+      <button class="icon-btn" id="logoutBtn" title="Cerrar sesión">↪</button>
     </header>
 
-    <main class="content">
-      <section class="hero">
-        <div class="hero-copy">
-          <div class="brand">▥ Adcash-Centro</div>
-          <h2>Red publicitaria<br><strong>efectiva</strong></h2>
-          <p>Conecta anunciantes, editores y audiencias para crear oportunidades digitales.</p>
-          <div class="stats">
-            <div><b>200+</b><span>países</span></div>
-            <div><b>10K+</b><span>socios activos</span></div>
-            <div><b>18+</b><span>impresiones diarias</span></div>
+    <main>
+      <section class="balance-card">
+        <div class="balance-label">Saldo disponible</div>
+        <div class="balance" id="balance">RD$0.00</div>
+        <div class="user-phone" id="userPhone"></div>
+        <button class="primary-btn" data-view="withdraw">Solicitar retiro</button>
+      </section>
+
+      <section class="vip-card">
+        <div class="section-title-row">
+          <div>
+            <div class="eyebrow">NIVEL ACTUAL</div>
+            <h2 id="vipName">Usuario</h2>
           </div>
+          <div class="vip-badge" id="vipBadge">NORMAL</div>
         </div>
-        <div class="network">
-          <div class="center-node">▥<small>centro</small></div>
-          <i class="node n1">Google<br>Ads</i>
-          <i class="node n2">Meta<br>Business</i>
-          <i class="node n3">TikTok</i>
-          <i class="node n4">Shopify</i>
-          <i class="node n5">Prebid</i>
-          <i class="node n6">criteo</i>
+        <div class="progress-info">
+          <span id="vipProgressText">0 / 100 puntos</span>
+          <span id="nextVipText">VIP 1</span>
+        </div>
+        <div class="progress"><div id="vipProgress"></div></div>
+        <p class="muted" id="vipDescription">Completa anuncios para avanzar de nivel.</p>
+      </section>
+
+      <section id="homeView" class="view active">
+        <div class="section-title-row">
+          <h2>Gana viendo anuncios</h2>
+          <span class="counter" id="adCounter">0/3 hoy</span>
+        </div>
+        <div class="ad-card">
+          <div class="ad-icon">▶</div>
+          <div class="ad-content">
+            <h3>Anuncio disponible</h3>
+            <p>Visualiza el anuncio completo para recibir tu recompensa.</p>
+            <div class="reward" id="adReward">+ RD$50</div>
+          </div>
+          <button class="watch-btn" id="watchAdBtn">Ver anuncio</button>
+        </div>
+        <div class="notice">El límite actual es de <b>3 anuncios por día</b>. Las recompensas mostradas son reglas del prototipo y deberán ajustarse a los ingresos reales de los proveedores de anuncios.</div>
+
+        <h2 class="subheading">Tus estadísticas</h2>
+        <div class="stats-grid">
+          <div class="stat"><span>Hoy</span><b id="todayEarn">RD$0</b></div>
+          <div class="stat"><span>Total ganado</span><b id="totalEarn">RD$0</b></div>
+          <div class="stat"><span>Anuncios</span><b id="totalAds">0</b></div>
+          <div class="stat"><span>Referidos</span><b id="referrals">0</b></div>
         </div>
       </section>
 
-      <section class="balance">
-        <p>Número de teléfono móvil: <b id="phone">8292019511</b></p>
-        <div class="money">RD$ <span id="balance">200.00</span></div>
-        <p>Mi saldo</p>
+      <section id="vipView" class="view">
+        <h2>Niveles VIP</h2>
+        <p class="muted">La barra de nivel muestra tu progreso dentro del prototipo.</p>
+        <div id="vipList" class="vip-list"></div>
       </section>
 
-      <button class="start" id="startBtn">Empieza a ganar dinero</button>
-
-      <section class="quick-actions">
-        <button data-action="complete"><span>▣</span><b>Completar</b></button>
-        <button data-action="withdraw"><span>▥</span><b>Retiro</b></button>
-        <button data-action="message"><span>☷</span><b>Mensaje</b></button>
-        <button data-action="invite"><span>●●</span><b>Invitar</b></button>
-      </section>
-
-      <section class="banner">
-        <div>
-          <strong>▶ Adcash-Centro</strong>
-          <p>Vídeos que te hacen ganar</p>
+      <section id="withdrawView" class="view">
+        <h2>Retirar ganancias</h2>
+        <div class="withdraw-card">
+          <p>Saldo disponible</p>
+          <strong id="withdrawBalance">RD$0.00</strong>
+          <label>Método de retiro</label>
+          <select id="withdrawMethod">
+            <option>Transferencia bancaria</option>
+            <option>Cuenta móvil</option>
+          </select>
+          <label>Referencia de pago</label>
+          <input id="withdrawReference" placeholder="Número o cuenta para recibir el pago">
+          <button class="primary-btn" id="withdrawBtn">Solicitar retiro</button>
+          <small class="muted">En esta versión es una demostración; todavía no se realizan pagos reales.</small>
         </div>
-        <span>RD$ +</span>
       </section>
 
-      <section class="notice">
-        <h3>Actividad de hoy</h3>
-        <p id="status">Pulsa “Empieza a ganar dinero” para comenzar.</p>
+      <section id="profileView" class="view">
+        <h2>Mi perfil</h2>
+        <div class="profile-card">
+          <div class="avatar">👤</div>
+          <label>Nombre</label>
+          <input id="profileName">
+          <label>Número</label>
+          <input id="profilePhone">
+          <button class="primary-btn" id="saveProfileBtn">Guardar cambios</button>
+        </div>
+      </section>
+
+      <section id="loginView" class="auth view">
+        <div class="auth-card">
+          <div class="brand big">CENTRO <span>GANANCIAS</span></div>
+          <p class="muted">Regístrate para crear tu cuenta de demostración.</p>
+          <label>Nombre</label>
+          <input id="regName" placeholder="Tu nombre">
+          <label>Número de teléfono</label>
+          <input id="regPhone" placeholder="Tu número">
+          <label>Contraseña</label>
+          <input id="regPassword" type="password" placeholder="Crea una contraseña">
+          <button class="primary-btn" id="registerBtn">Crear cuenta</button>
+          <p class="tiny">Los datos de esta primera versión se guardan únicamente en este dispositivo. Para cuentas reales necesitaremos un servidor y una base de datos.</p>
+        </div>
       </section>
     </main>
 
     <nav class="bottom-nav">
-      <button class="active" data-nav="home">⌂<span>Hogar</span></button>
-      <button data-nav="orders">▤<span>Pedido</span></button>
-      <button class="main-action" id="earnBtn">●</button>
-      <button data-nav="support">♧<span>Atender</span></button>
-      <button data-nav="me">♙<span>Mi</span></button>
+      <button data-view="home">⌂<span>Inicio</span></button>
+      <button data-view="vip">★<span>VIP</span></button>
+      <button data-view="withdraw">⇩<span>Retiro</span></button>
+      <button data-view="profile">♙<span>Perfil</span></button>
     </nav>
   </div>
+  <div class="modal hidden" id="adModal">
+    <div class="modal-card">
+      <div class="ad-placeholder">ANUNCIO</div>
+      <h3 id="adTimer">Preparando anuncio...</h3>
+      <p class="muted">Para este prototipo, mantén la ventana abierta hasta que termine el contador.</p>
+      <button class="primary-btn hidden" id="claimBtn">Reclamar recompensa</button>
+    </div>
+  </div>
+  <div id="toast"></div>
   <script src="script.js"></script>
 </body>
 </html>
